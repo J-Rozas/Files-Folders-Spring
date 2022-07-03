@@ -17,7 +17,8 @@ public class Folder {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
     @JsonIgnoreProperties(value = "folders")
     private Person person;
 
