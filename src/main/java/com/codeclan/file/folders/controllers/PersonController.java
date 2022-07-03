@@ -5,10 +5,7 @@ import com.codeclan.file.folders.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,9 @@ public class PersonController {
         return new ResponseEntity(personRepository.findById(id), HttpStatus.OK);
     }
 
-//    @PostMapping(value = "/persons")
-//    public ResponseEntity<Person>
+    @PostMapping(value = "/persons")
+    public ResponseEntity<Person> postPerson(@RequestBody Person person) {
+        personRepository.save(person);
+        return new ResponseEntity<>(person, HttpStatus.CREATED);
+    }
 }
