@@ -17,8 +17,8 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "person", orphanRemoval = true)
-    @JsonIgnoreProperties(value = "person")
+    @OneToMany(mappedBy = "person")
+    @JsonIgnoreProperties({"person"})
     private List<Folder> folders;
 
     public Person(String name) {
