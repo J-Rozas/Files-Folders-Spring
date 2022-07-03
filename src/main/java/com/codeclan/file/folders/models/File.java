@@ -18,8 +18,9 @@ public class File {
     @Column(name = "size")
     private int size;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = "files")
+    @ManyToOne
+    @JoinColumn(name = "folder_id")
+    @JsonIgnoreProperties({"files"})
     private Folder folder;
 
     public File(String extension, int size, Folder folder) {
@@ -29,10 +30,6 @@ public class File {
     }
 
     public File() {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getExtension() {
@@ -62,4 +59,6 @@ public class File {
     public Long getId() {
         return id;
     }
+
+
 }
